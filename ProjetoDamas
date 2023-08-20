@@ -1,0 +1,71 @@
+using System;
+
+namespace JogoDeDamas
+{
+    class Program
+    {
+        static char[,] tabuleiro = new char[8, 8];
+
+        static void InicializarTabuleiro()
+        {
+            for (int linha = 0; linha < 8; linha++)
+            {
+                for (int coluna = 0; coluna < 8; coluna++)
+                {
+                    if ((linha + coluna) % 2 == 0)
+                    {
+                        if (linha < 3)
+                            tabuleiro[linha, coluna] = 'X'; // Peça do jogador X
+                        else if (linha > 4)
+                            tabuleiro[linha, coluna] = 'O'; // Peça do jogador O
+                        else
+                            tabuleiro[linha, coluna] = ' ';
+                    }
+                    else
+                    {
+                        tabuleiro[linha, coluna] = ' ';
+                    }
+                }
+            }
+        }
+
+        static void MostrarTabuleiro()
+        {
+            Console.Clear();
+            Console.WriteLine("  0 1 2 3 4 5 6 7");
+            for (int linha = 0; linha < 8; linha++)
+            {
+                Console.Write(linha);
+                for (int coluna = 0; coluna < 8; coluna++)
+                {
+                    Console.Write(" " + tabuleiro[linha, coluna]);
+                }
+                Console.WriteLine();
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            InicializarTabuleiro();
+            MostrarTabuleiro();
+
+            bool jogoAtivo = true;
+            while (jogoAtivo)
+            {
+                Console.WriteLine("Informe a posição da peça a mover (linha coluna): ");
+                string[] posicaoOrigem = Console.ReadLine().Split();
+                int linhaOrigem = int.Parse(posicaoOrigem[0]);
+                int colunaOrigem = int.Parse(posicaoOrigem[1]);
+
+                Console.WriteLine("Informe a posição para onde mover (linha coluna): ");
+                string[] posicaoDestino = Console.ReadLine().Split();
+                int linhaDestino = int.Parse(posicaoDestino[0]);
+                int colunaDestino = int.Parse(posicaoDestino[1]);
+
+                // Implemente aqui a lógica de validação e movimentação das peças
+
+                MostrarTabuleiro();
+            }
+        }
+    }
+}
